@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhận File ADMIN</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Danh Sách Các File Đã Gửi</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Tên</th>
+                <th>Mã Nhân Viên</th>
+                <th>File</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            // Lấy danh sách file trong thư mục upload
+            $files = scandir('uploads/');
+            foreach ($files as $file) {
+                if ($file != '.' && $file != '..') {
+                    $file_info = pathinfo($file);
+                    // Bạn có thể lưu thông tin tên và mã nhân viên vào một file hoặc database, ở đây là ví dụ đơn giản.
+                    echo "<tr>
+                            <td>Người gửi</td>
+                            <td>Mã nhân viên</td>
+                            <td><a href='uploads/$file' download>Download</a></td>
+                          </tr>";
+                }
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
